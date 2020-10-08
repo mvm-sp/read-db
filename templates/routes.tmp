@@ -1,0 +1,18 @@
+const express = require('express');
+const router = express.Router();
+const controller = require('../controllers/{TableName}');
+
+
+router.route('/api/v1/{TableName}')
+            .get(controller.getAll)
+            .post(controller.add);
+
+router.route('/api/v1/{TableName}search')
+            .get(controller.search);
+
+router.route('/api/v1/{TableName}/:id')
+            .get(controller.getById)
+            .put(controller.update)
+            .delete(controller.remove);            
+
+module.exports = router;

@@ -1,0 +1,36 @@
+CREATE OR REPLACE FUNCTION public.prdbpersonalschema()
+ RETURNS TABLE(categoria character varying, tabela character varying, coluna character varying, tipo character varying, formato character varying, isprimary boolean, tamanho integer, posicao integer)
+ LANGUAGE plpgsql
+AS $function$
+BEGIN  
+	RETURN QUERY
+	SELECT
+	  CASE c.relkind
+	      WHEN 'r' THEN 'table'
+	      WHEN 'v' THEN 'view'
+	  END::VARCHAR                                                                ,
+	  table_name::VARCHAR                                                         ,
+	  column_name::VARCHAR                                                        ,
+	  udt_name::VARCHAR                                                           ,      -- User Defined Types such as composite, enumerated etc.
+	  format_type(a.atttypid, a.atttypmod)::VARCHAR ,
+	  case when pk.indisprimary then true else false end,
+	  CASE WHEN LOWER(data_type) = 'array' THEN information_schema._pg_char_max_length(arraytype.oid, a.atttypmod)
+	  ELSE character_maximum_length END::INT                                 ,
+	  ordinal_position::INT                                                   
+	FROM information_schema.columns
+	  INNER JOIN pg_catalog.pg_attribute a ON a.attname = column_name
+	  INNER JOIN pg_catalog.pg_class c ON c.oid = a.attrelid AND c.relname = table_name
+	  LEFT JOIN (SELECT pa.attname, i.indrelid, indisprimary
+				 FROM   pg_index i
+				 INNER JOIN   pg_attribute pa ON pa.attrelid = i.indrelid  
+				 AND pa.attnum = ANY(i.indkey)
+		         WHERE   i.indisprimary) pk on pk.indrelid =a.attrelid	and pk.attname = a.attname	
+	  LEFT JOIN pg_catalog.pg_type arraytype ON arraytype.typname = RIGHT(udt_name, -1)
+	  INNER JOIN pg_type t ON a.atttypid = t.oid
+	--WHERE table_schema = ANY($1)
+	WHERE table_schema = 'public'
+	AND c.relkind = 'r' 
+	ORDER BY table_schema, table_name, ordinal_position;
+END;
+$function$
+;

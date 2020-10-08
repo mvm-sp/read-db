@@ -1,0 +1,31 @@
+CREATE OR REPLACE FUNCTION prGet{TableName}(pid int)
+RETURNS TABLE ({SQLReturnGet}) AS $$
+	select {SQLFields}
+	from {TableName}
+	where (id = pid or pid is null);
+$$ LANGUAGE SQL;
+
+CREATE OR REPLACE FUNCTION prPost{TableName}({SQLParamPost})
+RETURNS void AS $$
+BEGIN	
+	insert into {TableName}({SQLFieldInsert}) values ({SQLParamInsert});
+END; $$ 
+LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION prPut{TableName}(pId int4, {SQLParamPut})
+RETURNS void AS $$
+begin
+	update {TableName} 
+	set {SQLFieldUpdate} , updatedat = now()
+	where id = pid;
+END; $$ 
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION prDelete{TableName}(pid int)
+RETURNS void AS $$
+begin
+	delete from {TableName} 
+	where id = pid;
+END; $$ 
+LANGUAGE plpgsql;
