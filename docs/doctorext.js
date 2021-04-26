@@ -143,7 +143,7 @@ function search() { return; }
  * @apiExample Example usage:
  * curl https://{HostAddres}/api/v1/doctorext/
  *
- * @apiUse TransactionSuccess
+ * 
  *
  * @apiUse GenericError
  */
@@ -163,7 +163,7 @@ function add() { return; }
  * @apiExample Example usage:
  * curl https://{HostAddres}/api/v1/doctorext/
  *
- * @apiUse TransactionSuccess
+ * 
  *
  * @apiUse GenericError
  */
@@ -184,7 +184,7 @@ function update() { return; }
  * @apiExample Example usage:
  * curl https://{HostAddres}/api/v1/doctorext/
  *
- * @apiUse TransactionSuccess
+ * 
  *
  * @apiUse GenericError
  */

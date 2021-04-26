@@ -1,4 +1,17 @@
 /**
+ * @apiDefine GenericError
+ *
+ * @apiError Generic Erro Message.
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Error
+ *     {
+ *       "error": "GenericError"
+ *     }
+ */
+
+
+/**
  * @api {get} /accgroup/ Read all data of a accgroup
  * @apiVersion 1.1.0
  * @apiName getAll
@@ -23,7 +36,7 @@
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
  *     {
-       *       "id": "", 
+ *       "id": "", 
  *       "dsgroup": "", 
  *       "cdgroup": "", 
  *       "rsgroup": "", 
@@ -36,6 +49,7 @@
  * @apiUse GenericError
  * 
  */
+
 function getAll() { return; }
 
 /**
@@ -136,7 +150,6 @@ function search() { return; }
  * @apiExample Example usage:
  * curl https://{HostAddres}/api/v1/accgroup/
  *
- * @apiUse TransactionSuccess
  *
  * @apiUse GenericError
  */
@@ -156,7 +169,6 @@ function add() { return; }
  * @apiExample Example usage:
  * curl https://{HostAddres}/api/v1/accgroup/
  *
- * @apiUse TransactionSuccess
  *
  * @apiUse GenericError
  */
@@ -177,7 +189,6 @@ function update() { return; }
  * @apiExample Example usage:
  * curl https://{HostAddres}/api/v1/accgroup/
  *
- * @apiUse TransactionSuccess
  *
  * @apiUse GenericError
  */

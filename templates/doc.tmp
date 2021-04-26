@@ -27,8 +27,7 @@ function getAll() { return; }
 /**
  * @api {get} /{TableName}/:id Read data of a {TableName} by id
  * @apiVersion 1.1.0
- * @apiName getById
- * @apiGroup {TableName}
+     
  * @apiPermission Token Validation
  *
  * @apiDescription This route reads {TableName} data
@@ -90,7 +89,7 @@ function search() { return; }
  * @apiExample Example usage:
  * curl https://{HostAddres}/api/v1/{TableName}/
  *
- * @apiUse TransactionSuccess
+ * 
  *
  * @apiUse GenericError
  */
@@ -110,7 +109,7 @@ function add() { return; }
  * @apiExample Example usage:
  * curl https://{HostAddres}/api/v1/{TableName}/
  *
- * @apiUse TransactionSuccess
+ * 
  *
  * @apiUse GenericError
  */
@@ -131,7 +130,7 @@ function update() { return; }
  * @apiExample Example usage:
  * curl https://{HostAddres}/api/v1/{TableName}/
  *
- * @apiUse TransactionSuccess
+ * 
  *
  * @apiUse GenericError
  */

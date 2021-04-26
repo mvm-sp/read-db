@@ -129,7 +129,7 @@ function search() { return; }
  * @apiExample Example usage:
  * curl https://{HostAddres}/api/v1/agreementext/
  *
- * @apiUse TransactionSuccess
+ * 
  *
  * @apiUse GenericError
  */
@@ -149,7 +149,7 @@ function add() { return; }
  * @apiExample Example usage:
  * curl https://{HostAddres}/api/v1/agreementext/
  *
- * @apiUse TransactionSuccess
+ * 
  *
  * @apiUse GenericError
  */
@@ -170,7 +170,7 @@ function update() { return; }
  * @apiExample Example usage:
  * curl https://{HostAddres}/api/v1/agreementext/
  *
- * @apiUse TransactionSuccess
+ * 
  *
  * @apiUse GenericError
  */
